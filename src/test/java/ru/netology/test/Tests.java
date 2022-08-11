@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.open;
 public class Tests {
 
     @BeforeEach
-
     void setup() {
         open("http://localhost:9999");
     }
@@ -30,181 +29,178 @@ public class Tests {
     String sumTransferIsNotValidValue = "aaa";
 
     @Test
-    void shouldTransferFromFirstCardToSecondCardCardsOk() {
+    void shouldTransferFromFirstCardToSecondCardOk() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
-        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getCardId()));
+        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransfer, DataHelper.getSecondCardsInfo().getCardNumber());
         cardsPage.isPageExist();
         float expected1 = balanceFirstCard + Float.parseFloat(sumTransfer);
         float expected2 = balanceSecondCard - Float.parseFloat(sumTransfer);
-        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getCardId()));
+        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         Assertions.assertEquals(expected1, actual1);
         Assertions.assertEquals(expected2, actual2);
     }
+
     @Test
-    void shouldTransferFromSecondCardToFirstCardCardsOk() {
+    void shouldTransferFromSecondCardToFirstCardOk() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
-        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float balanceSecondCard = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransfer, DataHelper.getFirstCardsInfo().getCardNumber());
         cardsPage.isPageExist();
         float expected1 = balanceFirstCard - Float.parseFloat(sumTransfer);
         float expected2 = balanceSecondCard + Float.parseFloat(sumTransfer);
-        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float actual2 = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         Assertions.assertEquals(expected1, actual1);
         Assertions.assertEquals(expected2, actual2);
     }
+
     @Test
-    void shouldTransferFromFirstCardToSecondCardCardsIfSumTransferIsNotIntegerDigitAmountMoreDigitBalance() {
+    void shouldTransferFromFirstCardToSecondCardIfSumTransferIsNotIntegerDigitAmountMoreDigitBalance() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
-        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float balanceSecondCard = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNotIntegerDigitAmountMoreDigitBalance, DataHelper.getSecondCardsInfo().getCardNumber());
         cardsPage.isPageExist();
         float expected1 = balanceFirstCard + Float.parseFloat(sumTransferIsNotIntegerDigitAmountMoreDigitBalance);
         float expected2 = balanceSecondCard - Float.parseFloat(sumTransferIsNotIntegerDigitAmountMoreDigitBalance);
-        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float actual2 = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         Assertions.assertEquals(expected1, actual1);
         Assertions.assertEquals(expected2, actual2);
     }
+
     @Test
-    void shouldTransferFromFirstCardToSecondCardCardsIfSumTransferIsNotIntegerDigitAmountEqualDigitBalance() {
+    void shouldTransferFromFirstCardToSecondCardIfSumTransferIsNotIntegerDigitAmountEqualDigitBalance() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
-        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float balanceSecondCard = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNotIntegerDigitAmountEqualDigitBalance, DataHelper.getSecondCardsInfo().getCardNumber());
         cardsPage.isPageExist();
         float expected1 = balanceFirstCard + Float.parseFloat(sumTransferIsNotIntegerDigitAmountEqualDigitBalance);
         float expected2 = balanceSecondCard - Float.parseFloat(sumTransferIsNotIntegerDigitAmountEqualDigitBalance);
-        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float actual2 = Float.parseFloat(cardsPage.returnSecondCardBalance());
+        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         Assertions.assertEquals(expected1, actual1);
         Assertions.assertEquals(expected2, actual2);
     }
+
     @Test
-    void shouldNotTransferFromSecondCardToFirstIfNotEnoughMoney() {
+    void shouldNotTransferFromSecondCardToFirstCardIfNotEnoughMoney() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferMoreBalance, DataHelper.getFirstCardsInfo().getCardNumber());
         transferPage.errorNotEnoughMoney();
     }
+
     @Test
-    void shouldNotTransferFromSecondCardToFirstIfNotSumMoney() {
+    void shouldNotTransferFromSecondCardToFirstICardIfNotSumMoney() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsEmpty, DataHelper.getFirstCardsInfo().getCardNumber());
         transferPage.errorEnterSumAmount();
     }
+
     @Test
-    void shouldNotTransferFromSecondCardToFirstIfNegativeSumAmount() {
+    void shouldNotTransferFromSecondCardToFirstCardIfNegativeSumAmount() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNegative, DataHelper.getFirstCardsInfo().getCardNumber());
         transferPage.errorEnterSumAmount();
     }
+
     @Test
-    void shouldNotTransferFromSecondCardToFirstIfSumAmountIsNull() {
+    void shouldNotTransferFromSecondCardToFirstCardIfSumAmountIsNull() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNull, DataHelper.getFirstCardsInfo().getCardNumber());
         transferPage.errorEnterSumAmount();
     }
+
     @Test
-    void shouldNotTransferFromSecondCardToFirstIfSumTransferIsNotValidValue() {
+    void shouldNotTransferFromSecondCardToFirstCardIfSumTransferIsNotValidValue() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNotValidValue, DataHelper.getFirstCardsInfo().getCardNumber());
         System.out.println(sumTransferIsNotValidValue);
         transferPage.errorNotValidValue();
     }
-    @Test
-    void checkButtonUpdateBalance(){
-        var authPage = new AuthPage();
-        var authInfo = DataHelper.getAuthInfo();
-        var verificationPage = authPage.validLogin(authInfo);
-        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-        var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible,Duration.ofSeconds(10));
-        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getCardId()));
-        cardsPage.updateCardsInfo();
-        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getCardId()));
-        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getCardId()));
-        Assertions.assertEquals(balanceFirstCard, actual1);
-        Assertions.assertEquals(balanceSecondCard, actual2);
-    }
 
     @Test
-    void check() {
+    void checkButtonUpdateBalance() {
         var authPage = new AuthPage();
         var authInfo = DataHelper.getAuthInfo();
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getCardBalance("0f3f5c2a-249e-4c3d-8287-09f7a039391d");
-        System.out.println(cardsPage.getCardBalance("92df3f1c-a033-48e6-8390-206f6b1f56c0"));
-        System.out.println(cardsPage.ddd());
+        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
+        cardsPage.updateCardsInfo();
+        float actual1 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
+        float actual2 = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
+        Assertions.assertEquals(balanceFirstCard, actual1);
+        Assertions.assertEquals(balanceSecondCard, actual2);
     }
 }

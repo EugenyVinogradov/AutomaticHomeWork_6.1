@@ -45,29 +45,14 @@ public class CardsPage {
     }
 
     public String getCardBalance(String id) {
+        String text = "";
         for (SelenideElement card : cards) {
             if (card.getAttribute("data-test-id").equals(id)) {
                 String balance = card.getText().split(":")[1].split("р")[0].trim();
-                return balance;
+                text = balance;
             }
-            throw new RuntimeException("ID карты " + id + " не найден!");
         }
-        return null;
-    }
-
-    public String  ddd() {
-        return cards.get(1).getAttribute("data-test-id");
-    }
-
-    public String returnFirstCardBalance() {
-        String str = getFirstCardInfo().toString();
-        return str.substring(86, str.length() - 19);
-    }
-
-
-    public String returnSecondCardBalance() {
-        String str = getSecondCardInfo().toString();
-        return str.substring(86, str.length() - 19);
+        return text;
     }
 
     public CardsPage updateCardsInfo() {
