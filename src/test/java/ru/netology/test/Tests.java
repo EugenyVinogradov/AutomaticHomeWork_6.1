@@ -35,7 +35,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getFirstCardInfo();
         float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
         float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
@@ -57,7 +57,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
         float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionSecondCard();
@@ -79,7 +79,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getFirstCardInfo();
         float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
         float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
@@ -101,7 +101,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getFirstCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getFirstCardInfo();
         float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
         float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         var transferPage = cardsPage.depositActionFirstCard();
@@ -123,7 +123,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferMoreBalance, DataHelper.getFirstCardsInfo().getCardNumber());
@@ -137,7 +137,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsEmpty, DataHelper.getFirstCardsInfo().getCardNumber());
@@ -151,7 +151,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNegative, DataHelper.getFirstCardsInfo().getCardNumber());
@@ -165,7 +165,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNull, DataHelper.getFirstCardsInfo().getCardNumber());
@@ -179,7 +179,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         var transferPage = cardsPage.depositActionSecondCard();
         transferPage.isPageExist();
         transferPage.transfer(sumTransferIsNotValidValue, DataHelper.getFirstCardsInfo().getCardNumber());
@@ -194,7 +194,7 @@ public class Tests {
         var verificationPage = authPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         var cardsPage = verificationPage.cardsPage(verificationCode);
-        cardsPage.getSecondCardInfo().shouldBe(Condition.visible, Duration.ofSeconds(10));
+        cardsPage.getSecondCardInfo();
         float balanceFirstCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getFirstCardsInfo().getId()));
         float balanceSecondCard = Float.parseFloat(cardsPage.getCardBalance(DataHelper.getSecondCardsInfo().getId()));
         cardsPage.updateCardsInfo();

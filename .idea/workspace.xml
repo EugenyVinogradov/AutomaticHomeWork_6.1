@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2eeed7cf-c4bd-40f6-8e02-6ee4908de37d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/dataHelper/DataHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/dataHelper/DataHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/page/CardsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/page/CardsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/netology/test/Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/netology/test/Tests.java" afterDir="false" />
     </list>
@@ -72,8 +71,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;last_directory_selection&quot;: &quot;C:/Users/vinogradov/OneDrive/Learning/Testing/4.AutomaticTesting/Homeworks/6/Homework_6.1/src/test/java&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vinogradov/OneDrive/Learning/Testing/4.AutomaticTesting/Homeworks/4&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RunManager" selected="Gradle.Tests (1)">
@@ -169,7 +167,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Tests.shouldTransferFromFirstCardToSecondCardCardsOk" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests.shouldTransferFromFirstCardToSecondCardOk" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -182,7 +180,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ru.netology.test.Tests.shouldTransferFromFirstCardToSecondCardCardsOk&quot;" />
+            <option value="&quot;ru.netology.test.Tests.shouldTransferFromFirstCardToSecondCardOk&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -195,10 +193,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests (1)" />
+        <item itemvalue="Gradle.Tests.shouldTransferFromFirstCardToSecondCardOk" />
         <item itemvalue="Gradle.Tests.checkButtonUpdateBalance" />
         <item itemvalue="Gradle.Tests.sgsdg" />
         <item itemvalue="Gradle.Tests.shouldTransferFromFirstCardToSecondCardCardsIfSumTransferIsNotIntegerDigitAmountEqualDigitBalance" />
-        <item itemvalue="Gradle.Tests.shouldTransferFromFirstCardToSecondCardCardsOk" />
       </list>
     </recent_temporary>
   </component>

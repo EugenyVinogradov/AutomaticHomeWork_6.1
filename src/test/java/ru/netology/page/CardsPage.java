@@ -37,10 +37,12 @@ public class CardsPage {
     }
 
     public SelenideElement getFirstCardInfo() {
+        firstCardInfo.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return firstCardInfo;
     }
 
     public SelenideElement getSecondCardInfo() {
+        secondCardInfo.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return secondCardInfo;
     }
 
